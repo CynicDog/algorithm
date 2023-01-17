@@ -1,4 +1,5 @@
 # Dependencies 
+import sys 
 import re 
 import collections 
 
@@ -116,6 +117,76 @@ class Solution:
 		return volume 
 
 
+# [LEETCODE #15 THREE SUM] 
+	def threeSum(self, nums: list[int]) -> list[list[int]]: 
+
+		results = [] 
+
+		nums.sort() 
+
+		for i in range(len(nums) - 2): 
+			if i > 0 and nums[i] == nums[i - 1]:
+				continue 
+
+			left, right = i + 1, len(nums) - 1 
+
+			while left < right: 
+				sum = nums[i] + nums[left] + nums[right] 
+
+				if sum < 0: 
+					left += 1 
+
+				elif sum > 0:
+					right -= 1 
+
+				else: 
+					results.append([nums[i], nums[left], nums[right]])
+
+					while left < right and nums[left] == nums[left + 1]:
+						left += 1 
+
+					while left < right and nums[right] == nums[right - 1]:
+						right -= 1 
+					
+					left += 1 
+					right -= 1 
+
+		return results 
+
+
+# [LEETCODE #238 PRODUCT EXCEPT SELF] 
+	def productExceptSelf(self, nums: list[int]) -> int:
+
+		out = [] 
+	
+		p = 1 
+		for i in range(0, len(nums)): 
+			out.append(p) 
+			p = p * nums[i] 
+
+		p = 1 
+		for i in range(len(nums) - 1, - 1, -1): 
+			out[i] = out[i] * p 
+			p = p * nums[i] 
+
+		return out 
+
+
+# [LEETCODE #121 MAX PROFIT(1)]
+	def maxProfit(self, prices: list[int]) -> int: 
+
+		profit = 0 
+		min_price = sys.maxsize 
+
+		for price in prices: 
+			min_price = min(min_price, price) 
+			profit = max(profit, price - min_price) 
+
+		return profit 
+
+
+
+
 
 # TEST CASE 
 solution = Solution() 
@@ -126,3 +197,6 @@ print(solution.mostCommonWord('Bob hit a ball, the hit BALL flew far after it wa
 print(solution.longestPalindrome('asdlkaasndssssslkkknaawww'))
 print(solution.twoSum(nums = [3, 2, 4], target = 6))
 print(solution.trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+print(solution.threeSum(nums = [-1, 1, 3, -2, 2, -3]))
+print(solution.productExceptSelf([1, 2, 3, 4, 5]))
+print(solution.maxProfit([7, 1, 5, 3, 6, 4]))
