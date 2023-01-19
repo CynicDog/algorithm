@@ -1,7 +1,13 @@
-# Dependencies 
+# Dependencies
 import sys 
 import re 
 import collections 
+from typing import Optional 
+
+class ListNode:
+	def __init__(self, val = 0, next = None):
+		self.val = val
+		self.next = next
 
 # Soultions 
 class Solution: 
@@ -185,18 +191,76 @@ class Solution:
 		return profit 
 
 
+# [LEETCODE #234 PALINDROME LINKED LIST] 
+	def isLinkedListPalindrome(self, head: Optional[ListNode]) -> bool: 
+
+		deq: Deque = collections.deque() 
+        
+		if not head: 
+			return True 
+        
+		node = head 
+        
+		while node: 
+			deq.append(node.val) 
+			node = node.next 
+		            
+		while len(deq) > 1: 
+			if deq.popleft() != deq.pop(): 
+				return False 
+
+		
+		return True 				
+
+	def isLinkedListPalindrome_2(self, head: Optional[ListNode]) -> bool: 
+		
+		rev = None 
+		slow = fast = head 
+
+		while fast and fast.next: 
+			fast = fast.next.next
+			rev, rev.next, slow = slow, rev, slow.next
+
+		if fast:
+			slow = slow.next 
+
+		while rev and rev.val == slow.val: 
+			slow, rev = slow.next, rev.next 
+
+		return not rev 
+	
+# [LEETCODE #21 MERGE TWO SORTED LISTS] 
+	def mergedTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]: 
+		if not list1 or (list2 and list1.val > list2.val): 
+			list1, list2 = list2, list1 
+
+		if list1: 
+			list1.next = self.mergedTwoLists(list1.next, list2) 
+
+		return list1 
+
+
+# [LEETCODE #206 REVERSE LINKED LIST] 
+	def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]: 
+
+		node, prev = head, None 
+
+		while node: 
+			next, node.next = node.next, prev 
+			prev, node = node, next 
+
+		return prev 
+
+# [LEETCODE #24 SWAP NODES IN PAIRS] 
+	def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]: 
+		
+		cur = head 
+
+		while cur and cur.next: 
+			cur.val, cur.next.val = cur.next.val, cur.val 
+			cur = cur.next.next 
+
+		return head  
 
 
 
-# TEST CASE 
-solution = Solution() 
-
-print(solution.isPalindrome("A man, a plan, a canal: Panama")) 
-print(solution.reverseString(['h', 'e', 'l', 'l', 'o']))  
-print(solution.mostCommonWord('Bob hit a ball, the hit BALL flew far after it was hit.', 'hit'))
-print(solution.longestPalindrome('asdlkaasndssssslkkknaawww'))
-print(solution.twoSum(nums = [3, 2, 4], target = 6))
-print(solution.trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
-print(solution.threeSum(nums = [-1, 1, 3, -2, 2, -3]))
-print(solution.productExceptSelf([1, 2, 3, 4, 5]))
-print(solution.maxProfit([7, 1, 5, 3, 6, 4]))
