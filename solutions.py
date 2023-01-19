@@ -86,7 +86,7 @@ class Solution:
 		return result 
 
 
-# [LEETCODE #1. Two Sum] 
+# [LEETCODE #1. TWO SUM] 
 	def twoSum(self, nums: list[int], target: int) -> list[int]: 
 
 		numsMap = {}
@@ -262,5 +262,22 @@ class Solution:
 
 		return head  
 
+# [LEETCODE #328 ODD EVEN LINKED LIST]
+	def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]: 
+	
+		if head is None: 
+			return None 
 
+		odd = head 
+		odd_head = head 
 
+		even = head.next 
+		even_head = head.next 
+
+		while even and even.next: 
+			odd.next, even.next = odd.next.next, even.next.next 
+			odd, even = odd.next, even.next 
+
+		odd.next = even_head 		
+
+		return odd_head 
