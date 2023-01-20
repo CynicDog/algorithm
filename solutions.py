@@ -240,7 +240,7 @@ class Solution:
 		return list1 
 
 
-# [LEETCODE #206 REVERSE LINKED LIST] 
+# [LEETCODE #206 REVERSE LINKED LIST(1)] 
 	def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]: 
 
 		node, prev = head, None 
@@ -281,3 +281,25 @@ class Solution:
 		odd.next = even_head 		
 
 		return odd_head 
+
+# [LEETCODE #92 REVERSE LINKED LIST(2)]
+	def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]: 
+		
+		if not head or left == right: 
+			return head 
+
+		root = start = ListNode(None) 
+		root.next = head 
+
+		for _ in range(left - 1): 
+			start = start.next 
+
+		end = start.next 
+
+		for _ in range(right - left): 
+			tmp = start.next 
+			start.next = end.next 
+			end.next = end.next.next
+			start.next.next = tmp 
+
+		return root.next 

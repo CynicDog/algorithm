@@ -76,3 +76,13 @@ odd_even = solution.oddEvenList(ListNode(1, ListNode(2, ListNode(3, ListNode(4, 
 while odd_even:
 	print(odd_even.val, end = ' ') 
 	odd_even = odd_even.next 
+
+print() 
+
+# [LEETCODE #92 REVERSE LINKED LIST(2)]
+reversed = solution.reverseBetween(ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5, ListNode(6, None)))))), left = 2, right = 5)
+while reversed: 
+	print(reversed.val, end = ' ') 
+	reversed = reversed.next 
+
+print()
