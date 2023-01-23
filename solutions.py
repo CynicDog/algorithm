@@ -2,7 +2,7 @@
 import sys 
 import re 
 import collections 
-from typing import Optional 
+from typing import Optional, List 
 
 class ListNode:
 	def __init__(self, val = 0, next = None):
@@ -228,6 +228,7 @@ class Solution:
 			slow, rev = slow.next, rev.next 
 
 		return not rev 
+
 	
 # [LEETCODE #21 MERGE TWO SORTED LISTS] 
 	def mergedTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]: 
@@ -251,6 +252,7 @@ class Solution:
 
 		return prev 
 
+
 # [LEETCODE #24 SWAP NODES IN PAIRS] 
 	def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]: 
 		
@@ -261,6 +263,7 @@ class Solution:
 			cur = cur.next.next 
 
 		return head  
+
 
 # [LEETCODE #328 ODD EVEN LINKED LIST]
 	def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]: 
@@ -281,6 +284,7 @@ class Solution:
 		odd.next = even_head 		
 
 		return odd_head 
+
 
 # [LEETCODE #92 REVERSE LINKED LIST(2)]
 	def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]: 
@@ -303,3 +307,70 @@ class Solution:
 			start.next.next = tmp 
 
 		return root.next 
+
+
+# [LEETCODE #20 VALID PARENTHESES] 
+	def isValidParentheses(self, s: str) -> bool: 
+
+		stack = [] 
+		table = {
+			')': '(', 
+			'}': '{', 
+			']': '[' 
+		}		
+
+		for char in s: 
+			if char not in table:
+				stack.append(char) 
+
+			elif not stack or stack.pop() != table[char]:
+				return False 
+
+		return len(stack) == 0 
+
+
+# [LEETCODE #316 REMOVE DUPLICATE LETTERS] 
+	def removeDuplicateLetters(self, s: str) -> str: 
+
+		seen, stack, counter = set(), [], collections.Counter(s) 
+		
+		for char in s: 
+			counter[char] -= 1 
+	
+			if char in seen: 
+				continue 
+
+			while stack and char < stack[-1] and counter[stack[-1]] > 0: 
+				seen.remove(stack.pop())
+
+			seen.add(char)
+			stack.append(char) 
+
+		return ''.join(stack) 
+
+
+# [LEETCODE #739 DAILY TEMPERATURES] 
+	def dailyTemperatures(self, T: List[int]) -> List[int]: 
+
+		answer = [0] * len(T) 
+		stack = [] 
+
+		for i, cur in enumerate(T): 
+
+			while stack and cur > T[stack[-1]]: 
+				last = stack.pop()
+				answer[last] = i - last 
+
+			stack.append(i) 
+
+		return answer 
+		
+		
+
+
+
+
+
+
+
+

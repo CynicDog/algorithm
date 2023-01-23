@@ -86,3 +86,12 @@ while reversed:
 	reversed = reversed.next 
 
 print()
+
+# [LEETCODE #20 VALID PARENTHESES]
+print(solution.isValidParentheses('()[]'))
+
+# [LEETCODE #316 REMOVE DUPLICATE LETTERS]
+print(solution.removeDuplicateLetters('bcabc'))
+
+# [LEETCODE #739 DAILY TEMPERATURES]
+print(solution.dailyTemperatures([73, 74, 75, 83, 79, 78, 77, 80]))
