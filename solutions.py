@@ -2,6 +2,9 @@
 import sys 
 import re 
 import collections 
+import heapq 
+import random 
+
 from typing import Optional, List 
 
 class ListNode:
@@ -366,11 +369,46 @@ class Solution:
 		return answer 
 		
 		
+# [LEETCODE #23 MERGE K SORTED LISTS]
+	def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]: 
+		
+		root = result = ListNode(None) 
+		heap = [] 
+
+		for i in range(len(lists)): 
+			if lists[i]: 
+				heapq.heappush(heap, (lists[i].val, i, lists[i])) 
+
+		while heap: 
+			node = heapq.heappop(heap) 
+			idx = node[1] 
+			result.next = node[2] 
+
+			result = result.next 	
+			
+			if result.next: 
+				heapq.heappush(heap, (result.next.val, idx, result.next))
+
+		return root.next  
 
 
+# [BIRTHDAY PROBLEM]
+	def birthdayProblem(self): 
+		trials = 10000 
+		count = 0 
 
+		for _ in range(trials): 
+			birthdays = [] 
 
+			for _ in range(23): 
+				birthday = random.randint(1, 365)
+	
+				if birthday in birthdays: 
+					count += 1 
+					break; 
 
-
-
-
+				birthdays.append(birthday) 
+		
+		print(f'{count / trials}')
+		
+			

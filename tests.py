@@ -95,3 +95,15 @@ print(solution.removeDuplicateLetters('bcabc'))
 
 # [LEETCODE #739 DAILY TEMPERATURES]
 print(solution.dailyTemperatures([73, 74, 75, 83, 79, 78, 77, 80]))
+
+# [LEETCODE #23 MERGE K SORTED LISTS]
+
+mergedKLists = solution.mergeKLists([ListNode(1, ListNode(4, ListNode(5, None))), ListNode(1, ListNode(3, ListNode(4, None))), ListNode(2, ListNode(6, None))])
+while mergedKLists: 
+	print(mergedKLists.val, end = ' ') 
+	mergedKLists = mergedKLists.next
+
+print() 
+
+# [BIRTHDAY PROBLEM]
+solution.birthdayProblem()
