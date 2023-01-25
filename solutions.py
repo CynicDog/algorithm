@@ -394,6 +394,7 @@ class Solution:
 
 # [BIRTHDAY PROBLEM]
 	def birthdayProblem(self): 
+
 		trials = 10000 
 		count = 0 
 
@@ -412,3 +413,53 @@ class Solution:
 		print(f'{count / trials}')
 		
 			
+# [LEETCODE #771 JEWELS AND STONES]
+	def numJewelsInStones(self, jewels: str, stones: str) -> int: 
+
+		freq = {}
+		count = 0 
+
+		for stone in stones: 
+			if stone not in freq: 
+				freq[stone] = 1 
+			else:
+				freq[stone] += 1 
+
+		for jewel in jewels: 
+			if jewel in freq: 
+				count += freq[jewel]  
+
+		return count 
+
+
+# [LEETCODE #3 LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS] 
+	def lengthOfLongestSubstring(self, s: str) -> int:
+		
+		start = max_length = 0 
+		seen = {} 
+
+		for idx, char in enumerate(s): 
+			if char in seen and start <= seen[char]: 
+				start = seen[char] + 1 
+			else: 
+				max_length = max(max_length, idx - start + 1) 
+
+			seen[char] = idx 
+
+		return max_length
+
+
+# [LEETCODE #347 TOP K FREQUENT ELEMENTS]
+	def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+		
+		freqs = collections.Counter(nums) 
+		heap = [] 
+
+		for num in freqs: 
+			heapq.heappush(heap, (-freqs[num], num))
+
+		result = []
+		for _ in range(k):
+			result.append(heapq.heappop(heap)[1])
+
+		return result 

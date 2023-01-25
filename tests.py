@@ -107,3 +107,12 @@ print()
 
 # [BIRTHDAY PROBLEM]
 solution.birthdayProblem()
+
+# [LEETCODE #771 JEWELS AND STONES]
+print(solution.numJewelsInStones(jewels = "aA", stones = "aAAbbBBbb")) 
+
+# [LEETCODE #3 LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS]
+print(solution.lengthOfLongestSubstring("aabbcabdbddbc")) 
+
+# [LEETCODE #347 TOP K FREQUENT ELEMENTS]
+print(solution.topKFrequent([1, 1, 1, 2, 2, 3], k = 2))
