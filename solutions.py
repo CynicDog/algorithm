@@ -463,3 +463,80 @@ class Solution:
 			result.append(heapq.heappop(heap)[1])
 
 		return result 
+
+# [LEETCODE #200 NUMBER OF ISLANDS] 
+	def numIslands(self, grid: List[List[str]]) -> int: 
+		
+		def dfs(i, j):
+			if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != '1': 
+				return 
+
+			grid[i][j] = 0 
+
+			dfs(i + 1, j)
+			dfs(i - 1, j) 
+			dfs(i, j + 1)
+			dfs(i, j - 1) 
+
+		count = 0 
+		for i in range(len(grid)):
+			for j in range(len(grid[0])): 
+				if grid[i][j] == '1':
+					dfs(i, j) 
+					count += 1 
+
+		return count 
+
+# [LEETCODE #17 LETTER COMBINATIONS OF A PHONE NUMBER] 
+	def letterCombinations(self, digits: str) -> List[str]: 
+
+		dic = {
+			"2": "abc", 
+			"3": "def", 
+			"4": "ghi", 
+			"5": "jkl", 
+			"6": "mno", 
+			"7": "pqrs", 
+			"8": "tuv", 
+			"9": "wxyz"
+		}
+
+		result = [] 
+
+		def dfs(index, path): 
+			if len(path) == len(digits): 
+				result.append(path)
+				return 
+
+			for i in range(index, len(digits)): 
+				for j in dic[digits[i]]: 
+					dfs(i + 1, path + j) 
+
+		dfs(0, "")
+
+		return result 			
+		
+# [LEETCODE #46 PERMUTATION]
+	def permute(self, nums: List[int]) -> List[List[int]]: 
+		
+		result = []
+		prev_elem = [] 
+
+		def dfs(elements): 
+			if len(elements) == 0: 
+				result.append(prev_elem[:]) 
+				return 
+
+			for elem in elements: 
+				next_elem = elements[:] 
+				next_elem.remove(elem)
+
+				prev_elem.append(elem) 
+	
+				dfs(next_elem) 
+
+				prev_elem.pop() 
+
+		dfs(nums) 
+
+		return result 

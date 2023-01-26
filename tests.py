@@ -116,3 +116,16 @@ print(solution.lengthOfLongestSubstring("aabbcabdbddbc"))
 
 # [LEETCODE #347 TOP K FREQUENT ELEMENTS]
 print(solution.topKFrequent([1, 1, 1, 2, 2, 3], k = 2))
+
+# [LEETCODE #200 NUMBER OF ISLANDS]  
+print(solution.numIslands(grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","1"],
+  ["0","0","1","0","1"]]))
+
+# [LEETCODE #17 LETTER COMBINATIONS OF A PHONE NUMBER] 
+print(solution.letterCombinations("23"))
+
+# [LEETCODE #46 PERMUTATION]
+print(solution.permute([1, 2, 3]))
