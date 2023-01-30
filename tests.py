@@ -129,3 +129,9 @@ print(solution.letterCombinations("23"))
 
 # [LEETCODE #46 PERMUTATION]
 print(solution.permute([1, 2, 3]))
+
+# [LEETCODE #77 COMBINATION] 
+print(solution.combine(4, 2))
+
+# [LEETCODE #39 COMBINATION SUM] 
+print(solution.combinationSum(candidates = [2,3,6,7], target = 7))
