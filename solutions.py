@@ -544,6 +544,7 @@ class Solution:
 
 # [LEETCODE #77 COMBINATION] 
 	def combine(self, n: int, k : int) -> List[List[int]]: 
+
 		result = [] 
 
 		def dfs(elements, start, k): 
@@ -561,8 +562,10 @@ class Solution:
 
 		return result 
 
+
 # [LEETCODE #39 COMBINATION SUM]
 	def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]: 
+
 		result = [] 
 
 		def dfs(csum, index, path): 
@@ -579,3 +582,76 @@ class Solution:
 		dfs(target, 0, [])
 
 		return result
+
+
+# [LEETCODE #78 SUBSETS]
+	def subsets(self, nums: List[int]) -> List[List[int]]:
+
+		result = [] 
+
+		def dfs(index, path): 
+			result.append(path)
+
+			for i in range(index, len(nums)): 
+				dfs(i + 1, path + [nums[i]])  
+
+		dfs(0, [])
+	
+		return result  
+
+
+# [LEETCODE #332 RECONSCRUCT ITINERARY] 
+	def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+		
+		graph = collections.defaultdict(list) 
+
+		for x, y in sorted(tickets): 
+			graph[x].append(y) 
+
+		result = []
+		def dfs(a): 
+			while graph[a]:
+				dfs(graph[a].pop(0)) 
+			
+			result.append(a)
+
+		dfs("JFK")
+
+		return result[::-1]
+
+
+# [LEETCODE #207 COURSE SCHEDULE] 
+
+	def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+	
+		graph = collections.defaultdict(list) 
+
+		for x, y in prerequisites: 
+			graph[x].append(y)
+
+		traced = set() 
+		visited = set() 
+
+		def dfs(k): 
+			if k in traced:
+				return False
+		
+			if k in visited:
+				return True 
+
+			traced.add(k) 
+
+			for y_ in graph[k]: 
+				if not dfs(y_):
+					return False 
+
+			traced.remove(k) 
+			visited.add(k) 
+
+			return True 
+
+		for x_ in list(graph):
+			if not dfs(x_):
+				return False
+
+		return True 					

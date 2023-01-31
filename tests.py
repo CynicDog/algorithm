@@ -135,3 +135,12 @@ print(solution.combine(4, 2))
 
 # [LEETCODE #39 COMBINATION SUM] 
 print(solution.combinationSum(candidates = [2,3,6,7], target = 7))
+
+# [LEETCODE #78 SUBSETS]
+print(solution.subsets(nums = [1, 2, 5]))
+
+# [LEETCODE #332 RECONSCRUCT ITINERARY] 
+print(solution.findItinerary([["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]))
+
+# [LEETCODE #207 COURSE SCHEDULE]
+print(solution.canFinish(5, prerequisites = [[1,4], [2,4], [3, 1], [3, 2]]))
