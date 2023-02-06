@@ -144,3 +144,6 @@ print(solution.findItinerary([["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","
 
 # [LEETCODE #207 COURSE SCHEDULE]
 print(solution.canFinish(5, prerequisites = [[1,4], [2,4], [3, 1], [3, 2]]))
+
+# [LEETCODE #743 NETWORK DELAY TIME]
+print(solution.networkDelayTime(times = [[2, 1, 1], [2, 6, 2], [2, 3, 2], [1, 3, 3], [6, 5, 2], [5, 3, 3], [3, 4, 4], [3, 7, 3]],n = 7, k = 2))

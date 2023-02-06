@@ -621,7 +621,6 @@ class Solution:
 
 
 # [LEETCODE #207 COURSE SCHEDULE] 
-
 	def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
 	
 		graph = collections.defaultdict(list) 
@@ -655,3 +654,29 @@ class Solution:
 				return False
 
 		return True 					
+
+
+# [LEETCODE #743 NETWORK DELAY TIME] 
+	def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+		
+		graph = collections.defaultdict(list) 
+		for u, v, w in times: 
+			graph[u].append((v, w)) 
+
+		dist = collections.defaultdict(int) 
+		queue = [(0, k)] 	# time, node
+
+		while queue: 
+			time, node = heapq.heappop(queue) 
+
+			if node not in dist: 
+				dist[node] = time 
+
+				for v, w in graph[node]:
+					alt = time + w 
+					heapq.heappush(queue, (alt, v)) 
+
+		if len(dist) == n: 
+			return max(dist.values()) 
+
+		return -1 
