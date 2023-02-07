@@ -680,3 +680,30 @@ class Solution:
 			return max(dist.values()) 
 
 		return -1 
+
+# [LEETCODE #787 CHEAPEST FLIGHTS WITHIN K STOPS] 
+	def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+		
+		graph = collections.defaultdict(list) 
+		for x, y, z in flights: 
+			graph[x].append((y, z)) 
+
+		dist = collections.defaultdict(int) 
+		queue = [(0, src, 0)] 	# price, node, count 
+
+		while queue: 
+			price, node, count = heapq.heappop(queue) 
+
+			if node == dst and count - 1 <= k: 
+				return price 
+
+			if node not in dist or dist[node] > count: 
+				dist[node] = count 
+
+				for y, z in graph[node]: 
+					alt = price + z 
+
+					heapq.heappush(queue, (alt, y, count + 1))
+
+		return -1 
+

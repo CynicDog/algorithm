@@ -147,3 +147,7 @@ print(solution.canFinish(5, prerequisites = [[1,4], [2,4], [3, 1], [3, 2]]))
 
 # [LEETCODE #743 NETWORK DELAY TIME]
 print(solution.networkDelayTime(times = [[2, 1, 1], [2, 6, 2], [2, 3, 2], [1, 3, 3], [6, 5, 2], [5, 3, 3], [3, 4, 4], [3, 7, 3]],n = 7, k = 2))
+
+# [LEETCODE #787 CHEAPEST FLIGHTS WITHIN K STOPS] 
+print(solution.findCheapestPrice(n = 4, flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], src = 0, dst = 3, k = 1)) 
+print(solution.findCheapestPrice(n = 4, flights = [[0,1,1], [1,2,1], [0,2,5],[2,3,1]], src = 0, dst = 3, k = 1))
