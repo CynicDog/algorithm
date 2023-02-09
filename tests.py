@@ -185,3 +185,84 @@ root.left.right = TreeNode(5)
 root.right = TreeNode(3)
 
 print("#543\t", solution.diameterOfBinaryTree(root))
+
+# [LEETCODE #687 LONGEST UNIQUE VALUE PATH]
+root = TreeNode(1)
+root.right = TreeNode(1) 
+root.right.left = TreeNode(1) 
+root.right.left.left = TreeNode(1) 
+root.right.left.right = TreeNode(1) 
+root.right.right = TreeNode(1)
+root.right.right.left = TreeNode(1) 
+
+print("#687\t", solution.longestUnivaluePath(root)) 
+
+# [LEETCODE #226 INVERT BINARY TREE]
+root = TreeNode(4) 
+root.left = TreeNode(2) 
+root.left.left = TreeNode(1)
+root.left.right = TreeNode(3) 
+root.right = TreeNode(7) 
+root.right.left = TreeNode(6) 
+root.right.right = TreeNode(9) 
+
+inverted = solution.invertTree(root)
+
+queue = collections.deque([inverted]) 
+print("#226\t", end = ' ')
+while queue: 
+
+	for _ in range(len(queue)): 
+		node = queue.popleft() 
+		print(node.val, end = ' ') 
+
+		if node.left:
+			queue.append(node.left)
+		if node.right:
+			queue.append(node.right) 
+
+print() 
+
+inverted_while = solution.invertTreeWhile(root)
+
+queue = collections.deque([inverted_while])   
+print("#226\t", end = ' ')
+while queue: 
+
+    for _ in range(len(queue)):
+        node = queue.popleft()
+        print(node.val, end = ' ')
+
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+print() 
+
+# [LEETCODE #617 MERGE TWO BINARY TREES] 
+root1 = TreeNode(1)
+root1.left = TreeNode(3)
+root1.left.left = TreeNode(5) 
+root1.right = TreeNode(2) 
+
+root2 = TreeNode(2)
+root2.left = TreeNode(1)
+root2.left.right = TreeNode(4) 
+root2.right = TreeNode(3) 
+root2.right.right = TreeNode(7) 
+
+merged = solution.mergeTrees(root1, root2)
+
+queue = collections.deque([merged]) 
+print("#617\t", end = ' ')
+while queue:
+
+    for _ in range(len(queue)):
+        node = queue.popleft()
+        print(node.val, end = ' ')
+
+        if node.left: 
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+print()

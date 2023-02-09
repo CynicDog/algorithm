@@ -746,7 +746,7 @@ class Solution:
 
 		
 		return dfs(root, 0) 
- 
+
 
 # [LEETCODE #543 DIAMETER OF BINARY TREE] 
 	path : int = 0
@@ -764,5 +764,98 @@ class Solution:
 
 		dfs(root) 
 
-		return self.path 
+		return self.path  
 			
+
+# [LEETCODE #687 LONGEST UNIQUE VALUE PATH] 
+	pathUnique: int = 0 
+	def longestUnivaluePath(self, root: Optional[TreeNode]) -> int: 
+
+		def dfs(node): 
+			if node is None:
+				return 0 
+
+			left = dfs(node.left)
+			right = dfs(node.right)
+
+			if node.left and node.left.val == node.val: 
+				left += 1 
+			else: 
+				left = 0 
+
+			if node.right and node.right.val == node.val:
+				right += 1 
+			else:
+				right = 0 
+
+			self.pathUnique = max(self.pathUnique, left + right) 
+		
+			return max(left, right) 
+		
+		dfs(root)
+
+		return self.pathUnique
+
+
+# [LEETCODE #226 INVERT BINARY TREE] 
+	def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+
+		if root: 
+			root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+	
+			return root 
+
+		return None 
+
+		
+	def invertTreeWhile(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+		queue = collections.deque([root]) 
+       
+		while queue: 
+			node = queue.popleft() 
+            
+			if node: 
+				node.left, node.right = node.right, node.left 
+                
+				queue.append(node.left)
+				queue.append(node.right) 
+                
+		return root 
+
+
+# [LEETCODE #617 MERGE TWO BINARY TREES] 
+	def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]: 
+		
+		if root1 and root2: 
+			node = TreeNode(root1.val + root2.val) 
+		
+			node.left = self.mergeTrees(root1.left, root2.left)
+			node.right = self.mergeTrees(root1.right, root2.right) 
+
+			return node 
+
+		else:
+			return root1 or root2 
+
+
+
+
+
+			
+
+					
+
+		
+
+			
+	
+					
+
+
+
+
+
+
+
+
+
