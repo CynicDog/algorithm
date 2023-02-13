@@ -266,3 +266,14 @@ while queue:
         if node.right:
             queue.append(node.right)
 print()
+
+# [LEETCODE #110 BALANCED BINARY TREE] 
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.left.left = TreeNode(3)
+root.left.left.left = TreeNode(4)
+root.right = TreeNode(2) 
+root.right.right = TreeNode(3)
+root.right.right.right = TreeNode(4) 
+
+print("#110\t", solution.isBalanced(root)) 

@@ -838,8 +838,26 @@ class Solution:
 			return root1 or root2 
 
 
+# [LEETCODE #110 BALANCED BINARY TREE] 
+	def isBalanced(self, root: Optional[TreeNode]) -> bool: 
+		
+		if root is None:
+			return True 
 
+		def dfs(node):
+			if node is None:
+				return True 
+			
+			left = dfs(node.left)
+			right = dfs(node.right) 
 
+			if left == -1 or right == -1 or abs(left - right) > 1:
+				return -1 
+		
+			return max(left, right) + 1 
+
+		return dfs(root) != -1 	
+				
 
 			
 
