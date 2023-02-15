@@ -276,4 +276,8 @@ root.right = TreeNode(2)
 root.right.right = TreeNode(3)
 root.right.right.right = TreeNode(4) 
 
-print("#110\t", solution.isBalanced(root)) 
+print("#110\t", solution.isBalanced(root))
+
+# [LEETCODE #310 MINIMUN HEIGHT TREES] 
+print("#310\t", solution.findMinHeightTrees(n = 8, edges = [[3, 0], [3, 1], [3, 2], [3, 4], [3, 6], [4, 5], [6, 7]]))
+ 
