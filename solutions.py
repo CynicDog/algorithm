@@ -18,6 +18,55 @@ class TreeNode:
         self.left = left 
         self.right = right 
 
+class TrieNode:
+	def __init__(self): 
+		self.children = collections.defaultdict(TrieNode) 
+		self.word_id = -1 
+		self.palindrome_ids = [] 
+
+class Trie: 
+	def __init__(self): 
+		self.root = TrieNode() 
+
+	@staticmethod 
+	def isPalindrome(word: str) -> bool: 
+		return word == word[::-1] 
+
+	def insert(self, word, index): 
+		node = self.root
+
+		for i, char in enumerate(reversed(word)):
+			if self.isPalindrome(word[:len(word) - i]):
+				node.palindrome_ids.append(index) 
+			node = node.children[char]  
+
+		node.word_id = index 
+
+	def search(self, word, index): 
+		node = self.root 
+		result = []
+	
+		# Case1: len(word_1) > len(word_2) where [word_1, word_2]
+		while word:
+			if node.word_id >= 0: 
+				if self.isPalindrome(word): 
+					result.append([index, node.word_id]) 
+			if word[0] not in node.children: 
+				return result 
+
+			node = node.children[word[0]]
+			word = word[1:] 
+		
+		# Case2: len(word_1) == len(word_2) where [word_1, word_2]
+		if node.word_id >= 0 and node.word_id != index:
+			result.append([index, node.word_id]) 
+
+		for palindrome_id in node.palindrome_ids: 
+			result.append([index, palindrome_id])
+
+		return result 
+			
+	
 # Soultions 
 class Solution: 
 
@@ -963,3 +1012,66 @@ class Solution:
 		dfs(root) 
 
 		return self.minDiff
+
+# [LEETCODE #336 PALINDROME PAIRS]
+	''' 
+	class TrieNode:
+    	def __init__(self):
+       		self.children = collections.defaultdict(TrieNode)
+        	self.word_id = -1
+	        self.palindrome_ids = []
+
+	class Trie: 
+	    def __init__(self): 
+    	    self.root = TrieNode() 
+
+	    @staticmethod 
+	    def isPalindrome(word: str) -> bool: 
+	        return word == word[::-1] 
+
+	    def insert(self, word, index): 
+    	    node = self.root
+
+        	for i, char in enumerate(reversed(word)):
+         		if isPalindrome(word[:len(word) - i]):
+            		node.palindrome_ids.append(index)
+	            node = node.children[char]  
+
+    	    node.word_id = index 
+
+    	def search(self, word, index): 
+        	node = self.root
+        	result = []
+    
+        	# Case1: len(word_1) > len(word_2) where [word_1, word_2]
+        	while word:
+            	if node.word_id >= 0: 
+                	if self.is_palindrome(word): 
+                    	result.append([index, node.word_id]) 
+            	if word[0] not in node.children: 
+                	return result 
+            
+            	node = node.children[word[0]]
+            	word = word[1:]
+        
+        	# Case2: len(word_1) == len(word_2) where [word_1, word_2]
+        	if node.word_id >= 0 and node.word_id != index:
+            	result.append([index, node.word_id]) 
+
+        	for palindrome_id in node.palindrome_ids: 
+            	result.append([index, palindrome_id])
+        
+        	return result
+	''' 
+	def palindromePairs(self, words: List[str]) -> List[List[int]]: 
+		trie = Trie() 
+		
+		for i, word in enumerate(words):
+			trie.insert(word, i) 
+
+		results = [] 
+		for i, word in enumerate(words):
+			results.extend(trie.search(word, i)) 
+
+		return results 
+		

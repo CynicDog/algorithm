@@ -339,4 +339,7 @@ root.left.left = TreeNode(49)
 root.left.left.right = TreeNode(52) 
 root.left.right = TreeNode(89) 
 
-print("#783\t", solution.minDiffInBST(root)) 
+print("#783\t", solution.minDiffInBST(root))
+
+# [LEETCODE #336 PALINDROME PAIRS] 
+print("#336\t", solution.palindromePairs(["abcd","dcba","lls","s","sssll", "cba"])) 
