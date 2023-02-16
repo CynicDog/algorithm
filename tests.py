@@ -280,4 +280,63 @@ print("#110\t", solution.isBalanced(root))
 
 # [LEETCODE #310 MINIMUN HEIGHT TREES] 
 print("#310\t", solution.findMinHeightTrees(n = 8, edges = [[3, 0], [3, 1], [3, 2], [3, 4], [3, 6], [4, 5], [6, 7]]))
- 
+
+# [LEETCODE #108 CONVERT SORTED ARRAY TO BINARY SEARCH TREE]  
+BST = solution.sortedArrayToBST([-10, -3, 0, 5, 9]) 
+print("#108\t", end = ' ') 
+queue = collections.deque([BST]) 
+while queue: 
+	for _ in range(len(queue)): 
+		node = queue.popleft() 
+		print(node.val, end = ' ') 
+
+		if node.left:
+			queue.append(node.left) 
+		if node.right:
+			queue.append(node.right)  
+print() 
+
+# [LEETCODE #1038 BINARY SEARCH TREE TO GREATER SUM TREE]
+root = TreeNode(4) 
+root.left = TreeNode(1) 
+root.left.left = TreeNode(0) 
+root.left.right = TreeNode(2) 
+root.left.right.right = TreeNode(3) 
+root.right = TreeNode(6) 
+root.right.left = TreeNode(5) 
+root.right.right = TreeNode(7) 
+root.right.right.right = TreeNode(8) 
+
+converted = solution.bstToGst(root) 
+print("#1038\t", end = ' ')
+queue = collections.deque([converted]) 
+while queue: 
+	for _ in range(len(queue)): 
+		node = queue.popleft()
+		print(node.val, end = ' ') 
+		
+		if node.left:
+			queue.append(node.left) 
+		if node.right:
+			queue.append(node.right) 
+print()
+
+
+# [LEETCODE #938 RANGE SUM OF BST] 
+root = TreeNode(10) 
+root.left = TreeNode(5) 
+root.left.left = TreeNode(3) 
+root.left.right = TreeNode(7) 
+root.right = TreeNode(15) 
+root.right.right = TreeNode(18) 
+
+print("#938\t", solution.rangeSumBST(root, low = 7, high = 15)) 
+
+# [LEETCODE #783 MINIMUM DISTANCE BETWEEN BST NODES] 
+root = TreeNode(90) 
+root.left = TreeNode(69) 
+root.left.left = TreeNode(49) 
+root.left.left.right = TreeNode(52) 
+root.left.right = TreeNode(89) 
+
+print("#783\t", solution.minDiffInBST(root)) 

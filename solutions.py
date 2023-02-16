@@ -736,16 +736,16 @@ class Solution:
 		return depth 
 	
 	def maxDepthRecursive(self, root: Optional[TreeNode]) -> int: 
-		def dfs(node, depth):
+		def dfs(node):
 			if node is None:
-				return depth 
+				return 0  
 
-			depth += 1 
+			left = dfs(node.left) 
+			right = dfs(node.right) 
 
-			return max(dfs(node.left, depth), dfs(node.right, depth)) 
-
+			return max(left, right) + 1
 		
-		return dfs(root, 0) 
+		return dfs(root)
 
 
 # [LEETCODE #543 DIAMETER OF BINARY TREE] 
@@ -891,17 +891,75 @@ class Solution:
 		return leaves 
 			
 
-		
+# [LEETCODE #108 CONVERT SORTED ARRAY TO BINARY SEARCH TREE] 
+	def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+	
+		if not nums:
+			return None 
+
+		mid = len(nums) // 2 
+	
+		node = TreeNode(nums[mid]) 
+
+		node.left = self.sortedArrayToBST(nums[:mid]) 
+		node.right = self.sortedArrayToBST(nums[mid + 1:]) 
+
+		return node 
 
 			
+# [LEETCODE #1038 BINARY SEARCH TREE TO GREATER SUM TREE] 
+	sum: int = 0 
+	def bstToGst(self, root: TreeNode) -> TreeNode:
+
+		def dfs(node):
+			if node is None:
+				return None 
+
+			
+			right = dfs(node.right) 
+
+			self.sum += node.val 
+			node.val = self.sum 
+
+			left = dfs(node.left) 
 	
-					
+			return node
+		
+		return dfs(root) 
 
 
+# [LEETCODE #938 RANGE SUM OF BST] 
+	rangeSum: int = 0 
+	def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+	
+		def dfs(node):
+			if node:
+				if node.val >= low and node.val <= high:
+					self.rangeSum += node.val 
+
+				left = dfs(node.left)
+				right = dfs(node.right) 
+
+		dfs(root)
+		
+		return self.rangeSum	
 
 
+# [LEETCODE #783 MINIMUM DISTANCE BETWEEN BST NODES] 
+	minDiff: int = sys.maxsize 
+	prev: int = -sys.maxsize 
+	def minDiffInBST(self, root: Optional[TreeNode]) -> int: 
 
+		def dfs(node): 
+			if node.left: 
+				dfs(node.left) 
 
+			self.minDiff = min(self.minDiff, node.val - self.prev) 
+			self.prev = node.val 
 
+			if node.right:
+				dfs(node.right) 
 
+		dfs(root) 
 
+		return self.minDiff
