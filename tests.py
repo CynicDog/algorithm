@@ -342,4 +342,25 @@ root.left.right = TreeNode(89)
 print("#783\t", solution.minDiffInBST(root))
 
 # [LEETCODE #336 PALINDROME PAIRS] 
-print("#336\t", solution.palindromePairs(["abcd","dcba","lls","s","sssll", "cba"])) 
+print("#336\t", solution.palindromePairs(["abcd","dcba","lls","s","sssll", "cba"]))
+
+# [INSERTION SORT] 
+print("#Insertion Sort") 
+print(solution.insertionSort([2, 3, 1, 5, 4, 7, 6]))
+
+# [QUICK SORT] 
+print("#Quick Sort") 
+print(solution.quickSort([2, 3, 1, 5, 4, 7, 6], 0, 6)) 
+
+# [LEETCODE #148 SORT LIST] 
+root = ListNode(4) 
+root.next = ListNode(2) 
+root.next.next = ListNode(3) 
+root.next.next.next = ListNode(1) 
+
+print("#148\t", end =' ') 
+sorted = solution.sortList(root) 
+while sorted: 
+	print(sorted.val, end = ' ')
+	sorted = sorted.next  
+

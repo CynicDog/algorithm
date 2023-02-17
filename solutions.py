@@ -61,6 +61,7 @@ class Trie:
 		if node.word_id >= 0 and node.word_id != index:
 			result.append([index, node.word_id]) 
 
+		# Case3: len(word_1) < len(word_2) where [word_1, word_2]
 		for palindrome_id in node.palindrome_ids: 
 			result.append([index, palindrome_id])
 
@@ -1045,8 +1046,7 @@ class Solution:
     
         	# Case1: len(word_1) > len(word_2) where [word_1, word_2]
         	while word:
-            	if node.word_id >= 0: 
-                	if self.is_palindrome(word): 
+            	if node.word_id >= 0 and if self.is_palindrome(word): 
                     	result.append([index, node.word_id]) 
             	if word[0] not in node.children: 
                 	return result 
@@ -1074,4 +1074,81 @@ class Solution:
 			results.extend(trie.search(word, i)) 
 
 		return results 
+	
+
+# [INSERTION SORT] 
+	def insertionSort(self, A: List[int]) -> List[int]: 
 		
+		for i in range(1, len(A)): 
+			key = A[i] 
+			j = i - 1 
+
+			while j >= 0 and A[j] > key: 
+				A[j + 1] = A[j] 
+				j -= 1 
+
+			A[j + 1] = key 
+
+			print(A)
+
+		return A 
+
+
+# [QUICK SORT: LOMUTO PARTITION]
+	def quickSort(self, A: List[int], low: int, high: int) -> List[int]: 
+		
+		def partition(low, high): 
+			pivot = A[high] 
+
+			left = low 
+			for right in range(low, high): 
+				if A[right] < pivot: 
+					A[left], A[right] = A[right], A[left] 
+					left += 1 
+
+			A[left], A[high] = A[high], A[left] 
+						
+			return left 
+
+		if low < high: 
+			pivot = partition(low, high) 
+			self.quickSort(A, low, pivot - 1)
+			self.quickSort(A, pivot + 1, high)  
+
+		return A
+
+
+# [LEETCODE #148 SORT LIST] 
+	def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]: 
+
+		if l1 and l2: 
+			if l1.val > l2.val:
+				l1, l2 = l2, l1 
+				l1.next = self.mergeTwoLists(l1.next, l2) 
+		
+		return l1 or l2 
+
+	def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+		
+		if not (head and head.next): 
+			return head  
+
+		half, slow, fast = None, head, head 
+
+		while fast and fast.next:
+			half, slow, fast = slow, slow.next, fast.next.next 
+
+		half.next = None 
+
+		l1 = self.sortList(head) 
+		l2 = self.sortList(slow) 
+
+		return self.mergeTwoLists(l1, l2) 
+
+
+
+
+
+
+
+
