@@ -1146,6 +1146,108 @@ class Solution:
 		return self.mergeTwoLists(l1, l2) 
 
 
+# [TIM SORT]
+       
+	minRun = 32 
+
+	def insertion(self, A, start, end):
+		
+		for i in range(start + 1, end + 1):
+			key = A[i] 
+			j = i - 1 
+
+			while j >= start and A[j] > key: 
+				A[j + 1] = A[j] 
+				j -= 1 
+
+			A[j + 1] = key  
+
+		return A 
+
+	def merge(self, A, start, mid, end): 
+		
+		first, last = A[start : mid + 1], A[mid + 1 : end + 1] 
+		len1, len2 = mid - start + 1, end - mid  
+
+		idx1, idx2 = 0, 0 
+
+		idx = start 
+
+		while idx1 < len1 and idx2 < len2: 
+			if first[idx1] < last[idx2]: 
+				A[idx] = first[idx1] 
+				idx1 += 1 
+			else: 
+				A[idx] = last[idx2] 
+				idx2 += 1 
+			
+			idx += 1 
+		
+		while idx1 < len1: 
+			A[idx] = first[idx1] 
+			idx1 += 1 
+			idx += 1 
+
+		while idx2 < len2:
+			A[idx] = last[idx2] 
+			idx2 += 1
+			idx += 1 
+
+		return A 
+		
+	def timSort(self, A): 
+		
+		n = len(A) 
+
+		for start in range(0, n, self.minRun):
+			
+			end = min(n - 1, start + self.minRun - 1) 
+			A = self.insertion(A, start, end) 
+
+		cur_size = self.minRun 
+		while cur_size < n: 
+			
+			for start in range(0, n, cur_size * 2): 
+				mid = min(n - 1, start + cur_size - 1) 
+				end = min(n - 1, mid + cur_size) 
+
+				
+				A = self.merge(A, start, mid, end) 
+ 			
+			cur_size *= 2 
+
+		return A 
+					
+     
+            
+            
+                
+   
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

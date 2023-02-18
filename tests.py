@@ -349,8 +349,7 @@ print("#Insertion Sort")
 print(solution.insertionSort([2, 3, 1, 5, 4, 7, 6]))
 
 # [QUICK SORT] 
-print("#Quick Sort") 
-print(solution.quickSort([2, 3, 1, 5, 4, 7, 6], 0, 6)) 
+print("#Quick Sort\n", solution.quickSort([2, 3, 1, 5, 4, 7, 6], 0, 6)) 
 
 # [LEETCODE #148 SORT LIST] 
 root = ListNode(4) 
@@ -363,4 +362,7 @@ sorted = solution.sortList(root)
 while sorted: 
 	print(sorted.val, end = ' ')
 	sorted = sorted.next  
+print() 
 
+# [TIM SORT] 
+print("#Tim Sort\n", solution.timSort([1, 3, 5, 4, 2, 6]))
