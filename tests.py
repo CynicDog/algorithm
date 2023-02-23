@@ -394,4 +394,16 @@ sorted = solution.insertionSortList(root)
 print("#147\t", end = '')
 while sorted: 
 	print(sorted.val, end = ' ') 
-	sorted = sorted.next 
+	sorted = sorted.next
+
+print() 
+
+# [LEETCODE #179 LARGEST NUMBER COMBINATION]  
+print("#179\t", solution.largestNumber(["2", "34", "43", "5", "0"]))
+
+# [LEETCODE #75 SORT COLORS] 
+print("#75\t", solution.sortColors([0, 0, 2, 1, 2, 0, 1]))
+
+# [LEETCODE #973 K-CLOSEST TO ORIGIN]
+print("#973\t", solution.kClosest(points = [[2, 7], [4, 5], [3, 6], [5, 4]], k = 3))
+

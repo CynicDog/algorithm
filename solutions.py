@@ -1,4 +1,4 @@
-# Dependencies
+#sd Dependencies
 import sys 
 import re 
 import collections 
@@ -1288,14 +1288,60 @@ class Solution:
 		return root.next 
 
 
+# [LEETCODE #179 LARGEST NUMBER COMBINATION] 
+	def toSwap(self, num1: int, num2: int) -> bool: 
+		return str(num1) + str(num2) < str(num2) + str(num1)
+
+	def largestNumber(self, nums: List[int]) -> str: 
+
+		for i in range(1, len(nums)): 
+			j = i - 1 
+			
+			while j >= 0 and self.toSwap(nums[j], nums[j + 1]): 
+				nums[j], nums[j + 1] = nums[j + 1], nums[j] 
+				j -= 1 
+
+		return str(int(''.join(map(str, nums))))
 
 
+# [LEETCODE #75 SORT COLORS]
+	def sortColors(self, nums: List[int]) -> List[int]: 
+
+		red, white, blue = 0, 0, len(nums) 
+
+		while white < blue: 
+			if nums[white] < 1: 
+				nums[white], nums[red] = nums[red], nums[white] 
+				white += 1 
+				red += 1 
+	
+			elif nums[white] > 1: 
+				blue -= 1 
+				nums[blue], nums[white] = nums[white], nums[blue] 
+
+			else: 
+				white += 1 
+
+		return nums 
 
 
+# [LEETCODE #973 K-CLOSEST TO ORIGIN] 
+	def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
 
+		heap = [] 
+		for (x, y) in points: 
+			dist = x ** 2 + y ** 2 
 
+			heapq.heappush(heap, (dist, x, y))  
 
+		result = [] 
+		for _ in range(k): 
+			dist, x, y = heapq.heappop(heap) 
+			result.append((x, y)) 
 
+		return result 
+ 
+	
 
 
 
