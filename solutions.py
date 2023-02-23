@@ -1166,8 +1166,8 @@ class Solution:
 
 	def merge(self, A, start, mid, end): 
 		
-		first, last = A[start : mid + 1], A[mid + 1 : end + 1] 
-		len1, len2 = mid - start + 1, end - mid  
+		first, last = A[start : mid + 1], A[mid + 1 : end] 
+		len1, len2 = mid - start + 1, end - mid + 1  
 
 		idx1, idx2 = 0, 0 
 
@@ -1205,11 +1205,12 @@ class Solution:
 			A = self.insertion(A, start, end) 
 
 		cur_size = self.minRun 
+
 		while cur_size < n: 
 			
 			for start in range(0, n, cur_size * 2): 
 				mid = min(n - 1, start + cur_size - 1) 
-				end = min(n - 1, mid + cur_size) 
+				end = min(n - 1, mid + cur_size - 1) 
 
 				
 				A = self.merge(A, start, mid, end) 
@@ -1217,25 +1218,74 @@ class Solution:
 			cur_size *= 2 
 
 		return A 
-					
-     
+	
+
+# [LEETCODE #103 BINARY TREE ZIGZAG LEVEL ORDER TRAVERSAL] 				
+	def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:     
+
+		if root is None:
+			return [] 
+
+		depth = 0 
+		results = [] 
+		
+		queue = collections.deque([root]) 
+		while queue: 
+			
+			temp = [] 
+			for _ in range(len(queue)): 
+				cur_node = queue.popleft() 
+
+				if depth % 2 == 0: 
+					temp.append(cur_node.val) 
+				else:
+					temp.insert(0, cur_node.val) 
+
+				if cur_node.left:
+					queue.append(cur_node.left) 
+				if cur_node.right:	
+					queue.append(cur_node.right) 
+
+			results.append(temp) 
+			depth += 1 
+
+		return results 
             
             
-                
-   
-  
- 
+# [LEETCODE #35 SEARCH INSERT POSITION]  
+	def searchInsert(self, nums: List[int], target: int) -> int:
+
+		if target in nums:
+			return nums.index(target) 
+
+		else: 
+			for idx, val in enumerate(nums): 
+			
+				if target < nums[0]:
+					return 0 
+
+				elif target > nums[len(nums) - 1]:
+					return len(nums) 
+
+				elif target < nums[idx + 1]: 
+					return idx + 1 
 
 
+# [LEETCODE #147 INSERTION SORT LIST]
+	def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]: 
 
+		root = cur = ListNode() 
+		
+		while head: 
+			while cur.next and cur.next.val < head.val: 
+				cur = cur.next 
 
+			cur.next, head.next, head = head, cur.next, head.next 
 
+			if head and cur.val > head.val: 
+				cur = root  
 
-
-
-
-
-
+		return root.next 
 
 
 

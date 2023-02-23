@@ -345,7 +345,7 @@ print("#783\t", solution.minDiffInBST(root))
 print("#336\t", solution.palindromePairs(["abcd","dcba","lls","s","sssll", "cba"]))
 
 # [INSERTION SORT] 
-print("#Insertion Sort") 
+print("#Isdnsertion Sort") 
 print(solution.insertionSort([2, 3, 1, 5, 4, 7, 6]))
 
 # [QUICK SORT] 
@@ -366,3 +366,32 @@ print()
 
 # [TIM SORT] 
 print("#Tim Sort\n", solution.timSort([1, 3, 5, 4, 2, 6]))
+
+# [BINARY TREE ZIGZAG LEVEL ORDER TRAVERSAL] 
+root = TreeNode(1) 
+root.left = TreeNode(2) 
+root.left.left = TreeNode(4) 
+root.left.right = TreeNode(5) 
+root.left.left.left = TreeNode(9) 
+root.left.right.right =TreeNode(8) 
+root.right = TreeNode(3) 
+root.right.right = TreeNode(6)
+root.right.right.right = TreeNode(7)  
+
+print("#103\t", solution.zigzagLevelOrder(root)) 
+
+# [LEETCODE #35 SEARCH INSERT POSITION]
+print("#35\t", solution.searchInsert([2, 3, 5], target = 4))
+
+# [LEETCODE #147 INSERTION SORT LIST] 
+root = ListNode(5) 
+root.next = ListNode(3) 
+root.next.next = ListNode(1) 
+root.next.next.next = ListNode(2) 
+root.next.next.next.next = ListNode(4) 
+
+sorted = solution.insertionSortList(root) 
+print("#147\t", end = '')
+while sorted: 
+	print(sorted.val, end = ' ') 
+	sorted = sorted.next 
