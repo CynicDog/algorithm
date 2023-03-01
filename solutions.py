@@ -1380,5 +1380,28 @@ class Solution:
 		return A 
 
 
+# [LEETCODE #704 BINARY SEARCH]
+	def binarySearchDrive(self, nums: List[int], target: int) -> int: 
+
+		def binarySearch(left: int, right: int) -> int: 
+
+			if left <= right: 
+
+				mid = (left + right) // 2 
+
+				if nums[mid] < target: 
+					return binarySearch(mid + 1, right) 
+				elif nums[mid] > target: 
+					return binarySearch(left, mid - 1) 
+
+				else: 
+					return mid 
+
+			return - 1 
+
+		return binarySearch(0, len(nums) - 1) 
+
+
+			 
 
 

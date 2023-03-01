@@ -410,3 +410,6 @@ print("#973\t", solution.kClosest(points = [[2, 7], [4, 5], [3, 6], [5, 4]], k =
 
 # [RADIX SORT] 
 print("#Radix Sort\n", solution.radixSort([121, 432, 564, 23, 1, 45, 788])) 
+
+# [LEETCODE #704 BINARTY SEARCH] 
+print("#704\t", solution.binarySearchDrive([1, 2, 3, 4, 5, 6, 7], 5))
