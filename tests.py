@@ -154,6 +154,7 @@ print("#78\t", solution.subsets(nums = [1, 2, 5]))
 # [LEETCODE #332 RECONSCRUCT ITINERARY] 
 print("#332\t", solution.findItinerary([["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]))
 
+
 # [LEETCODE #207 COURSE SCHEDULE]
 print("#207\t", solution.canFinish(5, prerequisites = [[1,4], [2,4], [3, 1], [3, 2]]))
 
@@ -345,7 +346,7 @@ print("#783\t", solution.minDiffInBST(root))
 print("#336\t", solution.palindromePairs(["abcd","dcba","lls","s","sssll", "cba"]))
 
 # [INSERTION SORT] 
-print("#Isdnsertion Sort") 
+print("#Insertion Sort") 
 print(solution.insertionSort([2, 3, 1, 5, 4, 7, 6]))
 
 # [QUICK SORT] 
@@ -407,3 +408,5 @@ print("#75\t", solution.sortColors([0, 0, 2, 1, 2, 0, 1]))
 # [LEETCODE #973 K-CLOSEST TO ORIGIN]
 print("#973\t", solution.kClosest(points = [[2, 7], [4, 5], [3, 6], [5, 4]], k = 3))
 
+# [RADIX SORT] 
+print("#Radix Sort\n", solution.radixSort([121, 432, 564, 23, 1, 45, 788])) 

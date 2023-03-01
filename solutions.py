@@ -1,4 +1,4 @@
-#sd Dependencies
+#Dependencies
 import sys 
 import re 
 import collections 
@@ -214,7 +214,7 @@ class Solution:
 						right -= 1 
 					
 					left += 1 
-					right -= 1 
+					right -= 1
 
 		return results 
 
@@ -1089,10 +1089,7 @@ class Solution:
 
 			A[j + 1] = key 
 
-			print(A)
-
 		return A 
-
 
 # [QUICK SORT: LOMUTO PARTITION]
 	def quickSort(self, A: List[int], low: int, high: int) -> List[int]: 
@@ -1166,10 +1163,11 @@ class Solution:
 
 	def merge(self, A, start, mid, end): 
 		
-		first, last = A[start : mid + 1], A[mid + 1 : end] 
-		len1, len2 = mid - start + 1, end - mid + 1  
+		first, last = A[start : mid + 1], A[mid + 1 : end + 1] 
+		len1, len2 = mid - start + 1, end - mid  
 
 		idx1, idx2 = 0, 0 
+
 
 		idx = start 
 
@@ -1210,7 +1208,7 @@ class Solution:
 			
 			for start in range(0, n, cur_size * 2): 
 				mid = min(n - 1, start + cur_size - 1) 
-				end = min(n - 1, mid + cur_size - 1) 
+				end = min(n - 1, mid + cur_size) 
 
 				
 				A = self.merge(A, start, mid, end) 
@@ -1342,10 +1340,44 @@ class Solution:
 		return result 
  
 	
+# [RADIX SORT]
+	def countSort(self, A, place): 
+
+		size = len(A) 
+		count = [0] * 10 
+		output = [0] * size 
+
+		for i in range(0, size): 
+			index = A[i] // place 
+			count[index % 10] += 1 
+
+		for i in range(1, 10): 
+			count[i] += count[i - 1] 
+
+		i = size - 1 
+		while i >= 0: 
+			index = A[i] // place 
+			output[count[index % 10] - 1] = A[i] 
+		
+			count[index % 10] -= 1  
+		
+			i -= 1 
+
+		for i in range(0, size): 
+			A[i] = output[i] 
 
 
+	def radixSort(self, A): 
+		maxElem = max(A) 
 
+		place = 1 
+		while maxElem // place > 0: 
+			self.countSort(A, place) 
 
+			place *= 10 
+	
+
+		return A 
 
 
 
