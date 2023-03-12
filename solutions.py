@@ -1401,7 +1401,26 @@ class Solution:
 
 		return binarySearch(0, len(nums) - 1) 
 
+# [LEETCODE #239 SLIDING WINDOW MAXIMUM] 
+	def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
 
+		queue = collections.deque() 
+
+		result = []
+		for i in range(0, len(nums)): 
+			while queue and queue[-1] < nums[i]: 
+				queue.pop() 
+			queue.append(nums[i]) 
+
+			if i < k - 1: 
+				continue 
+
+			result.append(queue[0]) 
+
+			if queue[0] == nums[i - k + 1]: 
+				queue.popleft() 
+
+		return result 
 			 
 
 
