@@ -415,4 +415,10 @@ print("#Radix Sort\n", solution.radixSort([121, 432, 564, 23, 1, 45, 788]))
 print("#704\t", solution.binarySearchDrive([1, 2, 3, 4, 5, 6, 7], 5))
 
 # [LEETCODE #239 SLIDING WINDOW MAXIMUM]
-print("#239\t", solution.maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3)) 
+print("#239\t", solution.maxSlidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3))
+
+# [LEETCODE #76 MINIMUM WINDOW SUBSTRING] 
+print("#76\t", solution.minWindow("ADOBECODEBANC", t = "ABC"))
+
+# [LEETCODE #424 LONGEST REPEATING CHARACTER REPLACEMENT]
+print("#424\t", solution.characterReplacement("AABABBA", 1)) 
