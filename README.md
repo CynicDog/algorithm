@@ -1,4 +1,4 @@
-# algorithm
+# About this repository .. 
 Codes of understanding on algorithm solutions in Python
 
 ## open in Colab
